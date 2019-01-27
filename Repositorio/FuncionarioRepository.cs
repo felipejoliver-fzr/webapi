@@ -1,33 +1,43 @@
 using System.Collections.Generic;
+using System.Linq;
 using webapi.Models;
 
 namespace webapi.Repositorio
 {
     public class FuncionarioRepository : IFuncionarioRepository
     {
+        private readonly FuncionarioDbContext _context;
+        public FuncionarioRepository (FuncionarioDbContext context)
+        {
+            _context = context;
+        }
         public void Add(Funcionario obj)
         {
-            throw new System.NotImplementedException();
+            _context.Funcionarios.Add(obj);
+            _context.SaveChanges();
         }
 
         public Funcionario Find(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Funcionarios.FirstOrDefault(f => f.IdFuncionario == id);
         }
 
         public IEnumerable<Funcionario> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Funcionarios.ToList();
         }
 
         public void Remove(int id)
         {
-            throw new System.NotImplementedException();
+            var func = _context.Funcionarios.First(f => f.IdFuncionario == id);
+            _context.Funcionarios.Remove(func);
+            _context.SaveChanges();
         }
 
         public void Update(Funcionario obj)
         {
-            throw new System.NotImplementedException();
+            _context.Funcionarios.Update(obj);
+            _context.SaveChanges();
         }
     }
 }

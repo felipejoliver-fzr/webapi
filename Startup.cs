@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using webapi.Models;
+using webapi.Repositorio;
 
 namespace webapi
 {
@@ -30,6 +31,7 @@ namespace webapi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<FuncionarioDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
             services.AddMvc();
         }
 

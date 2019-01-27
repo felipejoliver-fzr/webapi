@@ -12078,11 +12078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\projetos\\aspncore2\\webapi\\webapi.csproj",
+      "projectUniqueName": "C:\\repos\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "c:\\projetos\\aspncore2\\webapi\\webapi.csproj",
+      "projectPath": "C:\\repos\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\Gustavo Campos\\.nuget\\packages\\",
-      "outputPath": "c:\\projetos\\aspncore2\\webapi\\obj\\",
+      "outputPath": "C:\\repos\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
