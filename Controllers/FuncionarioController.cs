@@ -30,5 +30,60 @@ namespace webapi.Controllers
                 return new OkObjectResult(funcionario);
             }
         }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] Funcionario funcionario)
+        {
+            if(funcionario == null){
+                return BadRequest();
+            }else{
+                _funcionarioRepository.Add(funcionario);
+
+                return CreatedAtRoute("GetFuncionario", new{id = funcionario.IdFuncionario}, funcionario);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Funcionario funcionario)
+        {
+            if(funcionario == null || funcionario.IdFuncionario != id){
+                return BadRequest();
+            }else{
+                var funcionarioExiste = _funcionarioRepository.Find(id);
+
+                if(funcionarioExiste == null)
+                {
+                    return NotFound();
+                }else{
+                    funcionarioExiste.Nome = funcionario.Nome;
+                    funcionarioExiste.Email = funcionario.Email;
+
+                    _funcionarioRepository.Update(funcionarioExiste);
+
+                    return new NoContentResult();
+                }
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var funcionario = _funcionarioRepository.Find(id);
+
+            if(funcionario == null)
+            {
+                return NotFound();
+            }else
+            {
+                _funcionarioRepository.Remove(id);
+                return new NoContentResult();
+
+
+
+            }
+
+
+
+        }
     }
 }
