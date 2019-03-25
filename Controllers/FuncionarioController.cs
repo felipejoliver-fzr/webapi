@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using webapi.Models;
 using webapi.Repositorio;
@@ -6,6 +7,7 @@ using webapi.Repositorio;
 namespace webapi.Controllers
 {
     [Route("webapi/[Controller]")]
+    [Authorize()]
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
@@ -14,6 +16,7 @@ namespace webapi.Controllers
             _funcionarioRepository = funcionarioRepo;
         }
 
+        
         [HttpGet]
         public IEnumerable<Funcionario> GetAll()
         {
